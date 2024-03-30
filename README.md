@@ -1,24 +1,46 @@
-# README
+# URL Shortener
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple URL shortener made with Ruby on Rails.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+1. Clone the repository
 
-* System dependencies
+```bash
+git clone
+```
 
-* Configuration
+2. Install the dependencies
 
-* Database creation
+```bash
+bundle install
+```
 
-* Database initialization
+3. Create the database
 
-* How to run the test suite
+```bash
+rails db:create
+rails db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Usage
 
-* Deployment instructions
+Create a new short URL
 
-* ...
+```bash
+rails c
+``` 
+
+```ruby
+Link.shorten(url: "https://github.com/matheuxito", slug: "github")
+```
+
+Start the server
+
+```bash
+rails s
+```
+
+Go to your browser and access `http://localhost:3000/github`.
+
+The browser will redirect you to "https://github.com/matheuxito"
