@@ -1,0 +1,17 @@
+<div class="w-full min-h-screen flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2 class="text-center text-3xl font-extrabold text-gray-900">
+        Oops! Link Not Found
+      </h2>
+    </div>
+    <div>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        <%= flash[:alert] %>
+      </p>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        Create a new shortened link at the <%= link_to "home page", "/", class: "hover:underline text-blue-400" %>.
+      </p>
+    </div>
+  </div>
+</div>
