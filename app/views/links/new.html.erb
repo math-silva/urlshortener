@@ -18,36 +18,33 @@
             <%= form.submit "Shorten Link", id: "submit-button", class: "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:cursor-pointer" %>
           </div>
 
-          <% if flash[:shortened_url] %>
-            <div class="flex items-center justify-center space-x-2">
-              <p class="text-sm font-medium text-gray-900">Shortened URL:</p>
-              <div class="flex items-center">
-                <a href="<%= flash[:shortened_url] %>" class="text-sm font-medium text-blue-600 hover:underline" target="_blank"><%= flash[:shortened_url] %></a>
-                <button class="copy-button" data-clipboard-text="<%= flash[:shortened_url] %>">
-                  <img src="<%= asset_path('copy.png') %>" alt="Copy" class="ml-1 w-4 h-4">
-                </button>
-              </div>
+        <% end %>
+        <% if flash[:shortened_url] %>
+          <div class="flex items-center justify-center space-x-2">
+            <p class="text-sm font-medium text-gray-900">Shortened URL:</p>
+            <div class="flex items-center">
+              <a href="<%= flash[:shortened_url] %>" class="text-sm font-medium text-blue-600 hover:underline" target="_blank"><%= flash[:shortened_url] %></a>
+              <button class="copy-button" data-clipboard-text="<%= flash[:shortened_url] %>">
+                <img src="<%= asset_path('copy.png') %>" alt="Copy" class="ml-1 w-4 h-4">
+              </button>
             </div>
-          <% end %>
+          </div>
         <% end %>
       </div>
     </div>
   </div>
 </section>
+<script src="<%= asset_path('clipboard.min.js') %>"></script>
 <% if flash[:shortened_url] %>
-  <script src="<%= asset_path('clipboard.min.js') %>"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var clipboard = new ClipboardJS('.copy-button');
+    var clipboard = new ClipboardJS('.copy-button');
+    clipboard.on('success', function(e) {
+      e.clearSelection();
+      alert('Copied to clipboard');
+    });
 
-      clipboard.on('success', function(e) {
-        e.clearSelection();
-        alert('Copied to clipboard');
-      });
-
-      clipboard.on('error', function(e) {
-        alert('Failed to copy');
-      });
+    clipboard.on('error', function(e) {
+      alert('Failed to copy');
     });
   </script>
 <% end %>
