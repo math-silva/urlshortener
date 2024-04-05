@@ -1,11 +1,8 @@
+Rails.application.routes.default_url_options[:host] = "127.0.0.1:3000"
+
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
+  get "/" => "links#new", as: :new
   get "/s/:slug" => "links#show", as: :short
+  
+  post "/create" => "links#create", as: :create
 end
